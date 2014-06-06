@@ -1,0 +1,85 @@
+<body>
+
+
+
+<div id = "my_map"></div>
+<script>
+
+  tracksJSON = <%= @tracks_geo %>;
+  photosJSON = <%= @photos_geo %>;
+
+  position = 0;
+
+  var test = photosJSON[0].geometry.type;
+
+  function initialize_user_map () {
+
+      map = L.mapbox.map('my_map', 'examples.map-i86nkdio');
+
+      var tracks = L.mapbox.featureLayer(tracksJSON);
+        tracks.addTo(map);
+        map.fitBounds(tracks.getBounds());
+
+      photo = L.marker([
+        photosJSON[0].geometry.coordinates[1],
+        photosJSON[0].geometry.coordinates[0]])
+        .addTo(map);
+
+  }
+
+  window.onload = function() { prepareEventHandlers();};
+
+  function prepareEventHandlers() {
+    initialize_user_map(tracksJSON,photosJSON);
+
+    back = document.getElementById("back");
+    next = document.getElementById("next");
+    image = document.getElementById("my_photo");
+    image.src = "/images2/" + photosJSON[position].properties.file_name
+
+    next.addEventListener('click', advance);
+    back.addEventListener('click', retreat);
+  }
+
+  function advance () {
+    if ( position < photosJSON.length ) { position++ };
+    image.src = "/images2/" + photosJSON[position].properties.file_name;
+    photo.setLatLng(L.latLng(
+      photosJSON[position].geometry.coordinates[1],
+      photosJSON[position].geometry.coordinates[0]
+      ));
+
+  }
+
+  function retreat () {
+    if ( position > 0 ) { position-- };
+    image.src = "/images2/" + photosJSON[position].properties.file_name;
+    photo.setLatLng(L.latLng(
+    photosJSON[position].geometry.coordinates[1],
+    photosJSON[position].geometry.coordinates[0]
+    ));
+  }
+
+
+</script>
+
+<div id = "my_photo_container"><br>
+<div id = "back" class = "nav_button"></div>
+<img id = "my_photo" src = ""/>
+<div id = "next" class = "nav_button"></div>
+</div>
+
+<div id = "my_tracks">
+
+  <span id = "my_tracks_title"><b>Notes</b></span>
+
+  <ul>
+    <% @tracks.each do |track| %>
+      <li><div class = "track"> <%= "<b>#{track["name"]}</b><br> #{track["description"]}" %></div></li>
+    <% end %>
+  </ul>
+
+</div>
+
+
+</body>
