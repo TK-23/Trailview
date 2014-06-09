@@ -1,65 +1,63 @@
 <body>
 
-
-
 <div id = "my_map"></div>
 <script>
 
-  tracksJSON = <%= @tracks_geo %>;
-  photosJSON = <%= @photos_geo %>;
-
-  position = 0;
-
-  var test = photosJSON[0].geometry.type;
-
   function initialize_user_map () {
 
-      map = L.mapbox.map('my_map', 'examples.map-i86nkdio');
+      map = L.mapbox.map('my_map', 'examples.map-i86nkdio').setView([42.15, -70.78], 15);
 
-      var tracks = L.mapbox.featureLayer(tracksJSON);
-        tracks.addTo(map);
-        map.fitBounds(tracks.getBounds());
+  // //     var tracks = L.mapbox.featureLayer(tracksJSON);
+  // //       tracks.addTo(map);
+  // //       map.fitBounds(tracks.getBounds());
 
-      photo = L.marker([
-        photosJSON[0].geometry.coordinates[1],
-        photosJSON[0].geometry.coordinates[0]])
-        .addTo(map);
+      marker = L.marker([current_photo.lat,current_photo.long]).addTo(map);
+      viewer = L.multiPolygon([JSON.parse(current_photo.viewer_coords)]).addTo(map);
 
   }
 
   window.onload = function() { prepareEventHandlers();};
 
-  function prepareEventHandlers() {
-    initialize_user_map(tracksJSON,photosJSON);
+   function prepareEventHandlers() {
+
+    position = 0;
+
+    all_photos = <%= @photos %>;
+
+    current_photo = JSON.parse(all_photos[position]);
 
     back = document.getElementById("back");
     next = document.getElementById("next");
     image = document.getElementById("my_photo");
-    image.src = "/images2/" + photosJSON[position].properties.file_name
+
+    image.src = "/images2/" + current_photo.file_name;
+    initialize_user_map();
 
     next.addEventListener('click', advance);
     back.addEventListener('click', retreat);
   }
 
   function advance () {
-    if ( position < photosJSON.length ) { position++ };
-    image.src = "/images2/" + photosJSON[position].properties.file_name;
-    photo.setLatLng(L.latLng(
-      photosJSON[position].geometry.coordinates[1],
-      photosJSON[position].geometry.coordinates[0]
-      ));
-
-  }
+    if ( position < all_photos.length ) { position++ };
+    update_page();
+   }
 
   function retreat () {
     if ( position > 0 ) { position-- };
-    image.src = "/images2/" + photosJSON[position].properties.file_name;
-    photo.setLatLng(L.latLng(
-    photosJSON[position].geometry.coordinates[1],
-    photosJSON[position].geometry.coordinates[0]
-    ));
+    update_page();
   }
 
+
+  function update_page() {
+    current_photo = JSON.parse(all_photos[position]);
+    image.src = "/images2/" + current_photo.file_name;
+    marker.setLatLng(L.latLng(
+       [current_photo.lat,
+       current_photo.long]
+       ));
+    viewer.setLatLngs([JSON.parse(current_photo.viewer_coords)]).addTo(map);
+
+  }
 
 </script>
 
@@ -73,11 +71,7 @@
 
   <span id = "my_tracks_title"><b>Notes</b></span>
 
-  <ul>
-    <% @tracks.each do |track| %>
-      <li><div class = "track"> <%= "<b>#{track["name"]}</b><br> #{track["description"]}" %></div></li>
-    <% end %>
-  </ul>
+  <div class = "track"> <%= %></div>
 
 </div>
 

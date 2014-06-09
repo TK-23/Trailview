@@ -1,11 +1,11 @@
 require 'sinatra'
 require 'exifr'
 require 'pg'
-require_relative 'AccessDB'
+require 'json'
+require_relative 'image_loader'
 
 
 get "/" do
-  @photos_geo = CreateTable.new('trailview','tracks','*',).geoms
 
   erb :main
 end
@@ -17,9 +17,12 @@ end
 
 get "/tracks/:track_id" do
 
-  @tracks = CreateTable.new('trailview','tracks','*','id',params[:track_id]).attributes
-  @tracks_geo = CreateTable.new('trailview','tracks','*','id',params[:track_id]).geoms
-  @photos_geo = CreateTable.new('trailview','photos','*','track_id',params[:track_id]).geoms('file_name,file_path')
+  @track = Track.load_from_db(PG.connect(dbname: 'trailview'), [params[:track_id]])
+  @photos = []
+  @track.photos.each do |photo|
+    @photos << photo.to_json
+  end
+
   erb :track_page
 end
 

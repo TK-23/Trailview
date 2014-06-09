@@ -1,0 +1,1823 @@
+movies=# SELECT count(*) FROM movies;
+movies=# SELECT count(*) FROM movies;
+movies=# SELECT count(*) FROM movies;count
+SELECT count(*) FROM movies;count
+SELECT count(*) FROM movies;
+SELECT count(*) FROM movies
+SELECT count(*) FROM movies;
+SELECT count(*) FROM movies
+SELECT count(*) FROM movies;
+SELECT count(*) FROM movies;
+SELECT count(*) FROM movies;
+\q
+\d
+\d genres
+\d genres
+\d genres
+SELECT * from genre
+SELECT * from genres;
+SELECT * from genres;
+\q
+\q
+\d
+CREATE TABLE tasks (
+  id serial,
+  description varchar(255) NOT NULL,
+  estimated_duration integer,
+  created_at timestamp NOT NULL,
+  completed_at timestamp
+);
+SELECT * FROM movies WHERE id = 3;
+SELECT * FROM tasks WHERE id = 3;
+INSERT INTO tasks (description, estimated_duration, created_at)
+  VALUES ('Learn SQL', 180, now());
+SELECT * FROM tasks WHERE id = 3;
+SELECT * FROM tasks
+SELECT * FROM tasks;
+SELECT * FROM tasks;
+INSERT INTO tasks (description, estimated_duration, created_at)
+  VALUES ('Convert life savings to bitcoin', 10, now());
+INSERT INTO tasks (description, estimated_duration, created_at)
+  VALUES ('Watch videos of kittens on Youtube', 999999, now());
+SELECT * FROM tasks;
+UPDATE tasks SET completed_at = now() WHERE description = 'Watch videos of kittens on Youtube';
+SELECT * FROM tasks;
+dropdb tasks
+\q
+\d movies
+\d cast_members
+SELECT actors.name AS Actor, movies.title AS Movie, movies.year AS Year FROM cast_members
+JOIN actors ON cast_members.actor_id = actors.id
+JOIN movies ON cast_members.movie_id = movies.id
+WHERE cast_member.character LIKE '%James Bond%';
+SELECT actors.name AS Actor, movies.title AS Movie, movies.year AS Year FROM cast_members
+JOIN actors ON cast_members.actor_id = actors.id
+JOIN movies ON cast_members.movie_id = movies.id
+WHERE cast_members.character LIKE '%James Bond%';
+SELECT actors.name AS Actor, movies.title AS Movie, movies.year AS Year FROM cast_members
+JOIN actors ON cast_members.actor_id = actors.id
+JOIN movies ON cast_members.movie_id = movies.id
+WHERE cast_members.character LIKE '%James Bond%'
+ORDER BY movies.year;
+SELECT actors.name AS Actor, movies.title AS Movie, movies.year AS Year FROM cast_members
+JOIN actors ON cast_members.actor_id = actors.id
+JOIN movies ON cast_members.movie_id = movies.id
+WHERE cast_members.character LIKE '%Bond%'
+ORDER BY movies.year;
+SELECT actors.name AS Actor, movies.title AS Movie, movies.year AS Year FROM cast_members
+JOIN actors ON cast_members.actor_id = actors.id
+JOIN movies ON cast_members.movie_id = movies.id
+WHERE cast_members.character LIKE '%james bond%'
+ORDER BY movies.year;
+SELECT movies.title AS Title, movies.year AS Year, genres.name AS genre FROM actors
+  JOIN 
+;
+SELECT movies.title AS Title, movies.year AS Year, genres.name AS genre FROM cast_members
+  JOIN actors ON cast_members.actor_id = actors.id
+  JOIN movies ON cast_members.movie_id = movies.id
+  JOIN genres ON movies.genre_id = genres.id
+  WHERE actors.name = 'Julianne Moore'
+  ORDER BY genres.name, movies.title;
+;
+SELECT movies.title AS Movie, movies.year AS Year, studios.name FROM movies
+  JOIN studios ON movies.studio_id = studios.id
+  JOIN genres ON movies.genre_id = genres.id
+  WHERE genres.name = 'Horror'
+  ORDER BY movies.year;
+SELECT movies.title AS Movie, movies.year AS Year, studios.name FROM movies
+  JOIN studios ON movies.studio_id = studios.id
+  JOIN genres ON movies.genre_id = genres.id
+  WHERE genres.name = 'Horror'
+  ORDER BY movies.year;
+SELECT movies.title AS Movie, movies.year AS Year, studios.name AS studio, FROM movies
+  JOIN studios ON movies.studio_id = studios.id
+  JOIN genres ON movies.genre_id = genres.id
+  WHERE genres.name = 'Horror'
+  ORDER BY movies.year;
+SELECT movies.title AS Movie, movies.year AS Year, studios.name AS studio FROM movies
+  JOIN studios ON movies.studio_id = studios.id
+  JOIN genres ON movies.genre_id = genres.id
+  WHERE genres.name = 'Horror'
+  ORDER BY movies.year;
+SELECT movies.title AS Movie, movies.year AS Year, studios.name AS studio FROM movies
+  JOIN studios ON movies.studio_id = studios.id
+  JOIN genres ON movies.genre_id = genres.id
+  WHERE genres.name = 'Horror'
+  ORDER BY movies.year
+LIMIT 5;
+\q
+CREATE TABLE
+  id sequenial
+;
+CREATE TABLE recipies
+  id sequential
+  name varchar(100) NOT NULL,
+  ;
+CREATE TABLE recipies
+  id sequential,
+  name varchar(100) NOT NULL,
+  yield_servings numeric(2) NULL,
+  cook_time_minutes integer NULL,
+  directions varchar(1000) NOT NULL,
+;
+CREATE TABLE recipies (
+  id serial,
+  name varchar(100) NOT NULL,
+  yield_servings integer NULL,
+  total_time_minutes integer NULL,
+  directions varchar(1000) NOT NULL,
+  )
+;
+  
+CREATE TABLE ingredients (
+  id serial,
+  recipie_id integer,
+  ingredient_name varchar(100),
+  amount integer NULL,
+  amount_units varchar(50) NULL,
+  )
+;
+  
+CREATE TABLE ingredients (
+  id serial,
+  recipie_id integer,
+  ingredient_name varchar(100),
+  amount integer NULL,
+  amount_units varchar(50) NULL,
+  );
+  
+CREATE TABLE ingredients (
+  id serial,
+  recipie_id integer,
+  ingredient_name varchar(100),
+  amount integer NULL,
+  amount_units varchar(50) NULL,);
+  
+CREATE TABLE ingredients (
+  id serial,
+  recipie_id integer,
+  ingredient_name varchar(100),
+  amount integer NULL,
+  amount_units varchar(50) NULL);
+\d
+CREATE TABLE recipies (
+  id serial,
+  name varchar(100) NOT NULL,
+  yield_servings integer NULL,
+  total_time_minutes integer NULL,
+  directions varchar(1000) NOT NULL
+  )
+;
+INSERT INTO recipies (name, yield_servings, total_time_minutes, directions)
+  VALUES ('Green Eggs & Ham', 2, 25,'1. Cook the eggs.\n2. Cook the ham.\n3. Combine.');
+INSERT INTO recipies (name, yield_servings, total_time_minutes, directions)
+  VALUES ('Fried Green Tomatoes',,,'1. Slice the tomatoes 1/2 inch thick.\n2. Whisk eggs and milk together.\n3. Dip tomatoes in egg mixture and then bread crumbs.\n4. Heat oil in a large skillet.\n5. Fry the tomatoes in the oil.');
+  
+INSERT INTO recipies (name, yield_servings, total_time_minutes, directions)
+  VALUES ('Martini', 1,,'1. Pour all ingredients into mixing glass with ice cubes.\n2. Stir well.\n3. Strain in chilled martini cocktail glass.\n4. Squeeze oil from lemon peel onto the drink, or garnish with olive.');
+  
+INSERT INTO recipies (name, yield_servings, total_time_minutes, directions)
+  VALUES ('Green Eggs & Ham', 2, 25,'1. Cook the eggs.\n2. Cook the ham.\n3. Combine.');
+INSERT INTO recipies (name, yield_servings, total_time_minutes, directions)
+  VALUES ('Fried Green Tomatoes',,,'1. Slice the tomatoes 1/2 inch thick.\n2. Whisk eggs and milk together.\n3. Dip tomatoes in egg mixture and then bread crumbs.\n4. Heat oil in a large skillet.\n5. Fry the tomatoes in the oil.');
+INSERT INTO recipies (name, yield_servings, total_time_minutes, directions)
+  VALUES ('Fried Green Tomatoes','','','1. Slice the tomatoes 1/2 inch thick.\n2. Whisk eggs and milk together.\n3. Dip tomatoes in egg mixture and then bread crumbs.\n4. Heat oil in a large skillet.\n5. Fry the tomatoes in the oil.');
+  
+INSERT INTO recipies (name, yield_servings, total_time_minutes, directions)
+  VALUES ('Fried Green Tomatoes','','','1. Slice the tomatoes 1/2 inch thick.\n2. Whisk eggs and milk together.\n3. Dip tomatoes in egg mixture and then bread crumbs.\n4. Heat oil in a large skillet.\n5. Fry the tomatoes in the oil.');
+  
+INSERT INTO recipies (name, directions)
+  VALUES ('Fried Green Tomatoes','1. Slice the tomatoes 1/2 inch thick.\n2. Whisk eggs and milk together.\n3. Dip tomatoes in egg mixture and then bread crumbs.\n4. Heat oil in a large skillet.\n5. Fry the tomatoes in the oil.');
+INSERT INTO recipies (name, yield_servings, directions)
+  VALUES ('Martini', 1,'1. Pour all ingredients into mixing glass with ice cubes.\n2. Stir well.\n3. Strain in chilled martini cocktail glass.\n4. Squeeze oil from lemon peel onto the drink, or garnish with olive.');
+\d recipies
+recipies
+SELECT * from recipies
+;
+SELECT * from recipies;
+INSERT INTO ingredients (recipie_id, ingredient, amount, amount_units)
+  VALUES (1,'green eggs',4,'')
+  VALUES (1,'ham',5,'lb');
+\q
+CREATE TABLE recipies (
+  id serial,
+  name varchar(100) NOT NULL,
+  yield_servings integer NULL,
+  total_time_minutes integer NULL,
+  directions varchar(1000) NOT NULL
+  )
+;
+  
+CREATE TABLE ingredients (
+  id serial,
+  recipie_id integer,
+  ingredient_name varchar(100),
+  amount decimal NULL,
+  amount_units varchar(50) NULL,
+  optional varchar(1) NULL
+  )
+;
+INSERT INTO recipies (name, yield_servings, total_time_minutes, directions)
+  VALUES ('Green Eggs & Ham', 2, 25,'1. Cook the eggs.\n2. Cook the ham.\n3. Combine.');
+INSERT INTO ingredients (recipie_id, ingredient, amount, amount_units)
+  VALUES (1,'green eggs',4,'');
+INSERT INTO ingredients (recipie_id, ingredient, amount, amount_units)
+  VALUES (1,'ham',.5,'lb');
+  INSERT INTO ingredients (recipie_id, ingredient_name, amount, amount_units)
+  VALUES (1,'green eggs',4,'');
+INSERT INTO ingredients (recipie_id, ingredient_name, amount, amount_units)
+  VALUES (1,'ham',.5,'lb');
+  INSERT INTO recipies (name, directions)
+  VALUES ('Fried Green Tomatoes','1. Slice the tomatoes 1/2 inch thick.\n2. Whisk eggs and milk together.\n3. Dip tomatoes in egg mixture and then bread crumbs.\n4. Heat oil in a large skillet.\n5. Fry the tomatoes in the oil.');
+  
+INSERT INTO ingredients (recipie_id, ingredient_name, amount, amount_units)
+  VALUES (2,'large green tomatoes',3,'');
+INSERT INTO ingredients (recipie_id, ingredient_name, amount, amount_units)
+  VALUES (2,'eggs',2,'');
+INSERT INTO ingredients (recipie_id, ingredient_name, amount, amount_units)
+  VALUES (2,'milk',.5,'cup');
+INSERT INTO ingredients (recipie_id, ingredient, amount, amount_units)
+  VALUES (2,'vegetable oil',1,'quart');
+INSERT INTO ingredients (recipie_id, ingredient_name, amount, amount_units)
+  VALUES (2,'vegetable oil',1,'quart');
+INSERT INTO recipies (name, yield_servings, directions)
+  VALUES ('Martini', 1,'1. Pour all ingredients into mixing glass with ice cubes.\n2. Stir well.\n3. Strain in chilled martini cocktail glass.\n4. Squeeze oil from lemon peel onto the drink, or garnish with olive.');
+INSERT INTO ingredients (recipie_id, ingredient_name, amount, amount_units)
+  VALUES (3,'gin',2,'oz');
+INSERT INTO ingredients (recipie_id, ingredient_name, amount, amount_units)
+  VALUES (3,'dry vermouth',1,'oz');
+INSERT INTO ingredients (recipie_id, ingredient_name, amount, amount_units, optional_y_n)
+  VALUES (3,'lemon peel or olive','y');
+INSERT INTO ingredients (recipie_id, ingredient_name,optional_y_n)
+  VALUES (3,'lemon peel or olive','y');
+INSERT INTO ingredients (recipie_id, ingredient_name, optional_y_n)
+  VALUES (3,'lemon peel or olive','y');
+INSERT INTO ingredients (recipie_id, ingredient_name, optional)
+  VALUES (3,'lemon peel or olive','y');
+SELECT * from recipies;
+SELECT * from ingredients;
+INSERT INTO ingredients (recipie_id, ingredient_name, amount, amount_units)
+  VALUES (2,'breadcrumbs',.5,'cup');
+SELECT * from ingredients;
+UPDATE ingredientsUPDATE ingredients SET amount = 2, ingredient_name = 'vodka' WHERE ingedient_name = 'gin';
+UPDATE ingredients SET amount = 2, ingredient_name = 'vodka' WHERE ingedient_name = 'gin';
+UPDATE ingredients SET amount = 2, ingredient_name = 'vodka' WHERE ingredient_name = 'gin';
+SELECT * from ingredients;
+UPDATE ingredients SET amount = 3, ingredient_name = 'vodka' WHERE ingredient_name = 'gin';
+UPDATE ingredients SET amount = 3, ingredient_name = 'vodka' WHERE id = 7;
+DELETE FROM recipies WHERE id = 2;
+DELETE FROM recipies WHERE id = 1;
+DELETE FROM ingredients  WHERE recipie_id = 1;
+SELECT * from recipies;
+SELECT * from ingredients;
+\q
+"SELECT actors.name AS actor, cast_members.character AS role
+                    FROM cast_members JOIN actors ON cast_members.actor_id = actors.id JOIN movies ON cast_members.movie_id = movies.id #{insert}
+                    ORDER BY actors.name LIMIT 10
+
+;
+
+
+SELECT * from recipies
+;
+SELECT actors.name AS actor, cast_members.character AS role FROM cast_members JOIN actors ON cast_members.actor_id = actors.id JOIN movies ON cast_members.movie_id = movies.id ORDER BY actors.name LIMIT 10;
+SELECT * from ingredients;
+
+"
+;
+SELECT actors.name AS actor, cast_members.character AS role
+                    FROM cast_members JOIN actors ON cast_members.actor_id = actors.id JOIN movies ON cast_members.movie_id = movies.id ORDER BY actors.name LIMIT 10;
+SELECT actors.name AS actor, cast_members.character AS role
+                    FROM cast_members JOIN actors ON cast_members.actor_id = actors.id JOIN movies ON cast_members.movie_id = movies.id ORDER BY actors.name LIMIT 10 WHERE movies.id = 3204;
+SELECT actors.name AS actor, cast_members.character AS role
+                    FROM cast_members JOIN actors ON cast_members.actor_id = actors.id JOIN movies ON cast_members.movie_id = movies.id  WHERE movies.id = 3204;
+\q
+"SELECT actors.name AS name, actors.id AS id, count(*)
+           FROM cast_members JOIN actors ON cast_members.actor_id = actors.id JOIN movies ON cast_members.movie_id = movies.id WHERE actors.id = $1
+           GROUP BY actors.name AS name, actors.id;"
+;
+SELECT actors.name AS name, actors.id AS id, count(*)
+           FROM cast_members JOIN actors ON cast_members.actor_id = actors.id JOIN movies ON cast_members.movie_id = movies.id WHERE actors.id = $1
+           GROUP BY actors.name AS name, actors.id;
+;
+SELECT actors.name AS name, actors.id AS id, count(*)
+           FROM cast_members JOIN actors ON cast_members.actor_id = actors.id JOIN movies ON cast_members.movie_id = movies.id WHERE actors.id = $1
+           GROUP BY actors.name, actors.id;
+;
+SELECT actors.name AS name, actors.id AS id, count(*)
+           FROM cast_members JOIN actors ON cast_members.actor_id = actors.id JOIN movies ON cast_members.movie_id = movies.id
+           GROUP BY actors.name, actors.id;
+;
+\q
+SELECT * FROM movies WHERE to_tsvector(title) @@ plainto_tsquery('cabin');
+SELECT * FROM movies WHERE to_tsvector(title) @@ plainto_tsquery('the');
+SELECT * FROM movies WHERE to_tsvector(title) @@ plainto_tsquery('the');
+SELECT * FROM movies WHERE to_tsvector(title) @@ plainto_tsquery('the');
+SELECT * FROM movies WHERE to_tsvector(title) @@ plainto_tsquery('qqhe');
+q
+SELECT * FROM movies WHERE to_tsvector(title) @@ plainto_tsquery('qqhe');q
+q
+;
+SELECT * FROM movies WHERE to_tsvector(title) @@ plainto_t
+\q
+\d
+\d article
+\d articles
+\d comments
+\q
+SELECT * from articles;
+\q
+SELECT * FROM comments;
+\q
+SELECT * FROM comments;
+\q
+\q
+\q
+\d recipes
+SELECT * FROM recipes;
+SELECT * FROM recipes;
+SELECT id  FROM recipes;
+SELECT id,decription  FROM recipes;
+SELECT id, decription  FROM recipes;
+SELECT id, description  FROM recipes;
+\q
+SELECT * FROM recipes;
+SELECT id  FROM recipes;
+\d recipes
+SELECT name  FROM recipes;
+\q
+\d
+\d ingredients
+SELECT * FROM ingredients
+;
+SELECT * FROM recipes
+;
+\d recipes
+\q
+\d ingredients
+\q
+CREATE TABLE users (
+  user_id serial,
+  email varchar(100),
+  password varchar(1000),
+  salt varchar(100),
+  last_login date,
+  number_of_logins integer
+  );
+CREATE TABLE tracks (
+  track_id serial,
+  user_id integer,
+  name varchar(100),
+  description(1000),
+  import_date date,
+  );
+CREATE TABLE tracks (
+  track_id serial,
+  user_id integer,
+  name varchar(100),
+  description varchar(1000),
+  import_date date,
+  );
+CREATE TABLE tracks (
+  track_id serial,
+  user_id integer,
+  name varchar(100),
+  description varchar(1000),
+  import_date date,
+  );
+CREATE TABLE tracks (
+  track_id serial,
+  user_id integer,
+  name varchar(100),
+  description varchar(1000),
+  import_date date
+  );
+]q
+\q
+INSERT INTO mytable (geom) VALUES (
+  ST_GeomFromText('POINT(0 0)', 26910)
+);
+INSERT INTO mytable (geom) VALUES (
+  ST_GeomFromText('POINT(0 0)', 26910)
+);
+INSERT INTO mytable (geom) VALUES (
+  ST_GeomFromText('POINT(0 0)', 26910)
+);
+INSERT INTO mytable (geom) VALUES (
+  ST_GeomFromText('POINT(0 0)', 26910)
+);
+INSERT INTO mytable (geom) VALUES (
+  ST_GeomFromText('POINT(0 0)', 26910)
+);
+exit
+exit
+;
+exit
+\q
+SELECT ST_AsGeoJSON(geom) AS geometry from #{src_table}
+;
+SELECT ST_AsGeoJSON(geom) AS geometry from photo
+;
+SELECT ST_AsGeoJSON(geom) AS geometry,file_name + filepat from photo
+;
+SELECT ST_AsGeoJSON(geom) AS geometry,file_name + filepat f
+;
+SELECT ST_AsGeoJSON(geom) AS geometry,file_name,file_path from photo;
+exit
+exit
+;
+exit
+e\q
+\q
+CREATE TABLE users (
+  user_id serial PRIMARY KEY NOT NULL,
+  username varchar(20),
+  email varchar(100),
+  password varchar(1000),
+  salt varchar(100),
+  last_login date,
+  number_of_logins integer
+);
+CREATE TABLE tracks (
+  track_id serial PRIMARY KEY NOT NULL,
+  user_id integer REFERENCES users(user_id),
+  name varchar(100),
+  description varchar(1000),
+  import_date date
+);
+SELECT AddGeometryColumn('tracks','geom',4326,'LINESTRING',4);
+CREATE INDEX tracks_gix
+  ON tracks
+  USING GIST (geom);
+CREATE TABLE photo (
+  id serial PRIMARY KEY,
+  track_id integer REFERENCES tracks(track_id),
+  file_name varchar(1000),
+  file_path varchar(1000),
+  name varchar(100),
+  description text,
+  width integer,
+  height integer,
+  bits integer,
+  comment text,
+  make varchar(100),
+  model varchar(100),
+  orientation text,
+  x_resolution varchar(10),
+  y_resolution varchar(10),
+  resolution_unit integer,
+  software varchar(50),
+  date_time date,
+  ycb_cr_positioning varchar(50),
+  exposure_time varchar(50),
+  f_number varchar(50),
+  exposure_program varchar(50),
+  iso_speed_ratings varchar(50),
+  date_time_original date,
+  date_time_digitized date,
+  shutter_speed_value varchar(50),
+  aperture_value double precision,
+  brightness_value varchar(50),
+  metering_mode integer,
+  flash integer,
+  focal_length varchar(50),
+  subject_area varchar(50),
+  subsec_time_orginal integer,
+  subsec_time_digitized integer,
+  color_space integer,
+  pixel_x_dimension integer,
+  pixel_y_dimension integer,
+  sensing_method integer,
+  exposure_mode integer,
+  white_balance integer,
+  focal_length_in_35mm_film integer,
+  scene_capture_type integer,
+  gps_latitude_ref varchar(1),
+  gps_latitude varchar(50),
+  gps_longitude_ref varchar(1),
+  gps_longitude varchar(50),
+  gps_altitude_ref varchar(50),
+  gps_altitude varchar(50),
+  gps_time_stamp varchar(50),
+  gps_img_direction_ref varchar(1),
+  gps_img_direction varchar(50),
+  created date
+);
+\q
+insert into tracks id =1;
+insert into tracks track_id =1;
+insert into tracks tracks_id =1;
+insert into tracks(track_id) values (1);
+\q
+CREATE TABLE users (
+  user_id serial PRIMARY KEY NOT NULL,
+  username varchar(20),
+  email varchar(100),
+  password varchar(1000),
+  salt varchar(100),
+  last_login date,
+  number_of_logins integer
+);
+CREATE TABLE tracks (
+  track_id serial PRIMARY KEY NOT NULL,
+  user_id integer REFERENCES users(user_id),
+  name varchar(100),
+  description varchar(1000),
+  import_date date
+);
+CREATE TABLE photo (
+  id serial PRIMARY KEY,
+  track_id integer REFERENCES tracks(track_id),
+  file_name varchar(1000),
+  file_path varchar(1000),
+  name varchar(100),
+  description text,
+  width integer,
+  height integer,
+  bits integer,
+  comment text,
+  make varchar(100),
+  model varchar(100),
+  orientation text,
+  x_resolution varchar(10),
+  y_resolution varchar(10),
+  resolution_unit integer,
+  software varchar(50),
+  date_time date,
+  ycb_cr_positioning varchar(50),
+  exposure_time varchar(50),
+  f_number varchar(50),
+  exposure_program varchar(50),
+  iso_speed_ratings varchar(50),
+  date_time_original date,
+  date_time_digitized date,
+  shutter_speed_value varchar(50),
+  aperture_value double precision,
+  brightness_value varchar(50),
+  metering_mode integer,
+  flash integer,
+  focal_length varchar(50),
+  subject_area varchar(50),
+  subsec_time_orginal integer,
+  subsec_time_digitized integer,
+  color_space integer,
+  pixel_x_dimension integer,
+  pixel_y_dimension integer,
+  sensing_method integer,
+  custom_rendered varchar(50),
+  exposure_mode integer,
+  white_balance integer,
+  focal_length_in_35mm_film integer,
+  scene_capture_type integer,
+  gps_latitude_ref varchar(1),
+  gps_latitude varchar(50),
+  gps_longitude_ref varchar(1),
+  gps_longitude varchar(50),
+  gps_altitude_ref varchar(50),
+  gps_altitude varchar(50),
+  gps_time_stamp varchar(50),
+  gps_img_direction_ref varchar(1),
+  gps_img_direction varchar(50),
+  created date
+);
+insert into tracks (track_id) values (1);
+\q
+select count(*) from photo;
+dropdb test
+\q
+CREATE EXTENSION postgis;
+CREATE EXTENSION postgis_topology;
+CREATE EXTENSION fuzzystrmatch;
+CREATE EXTENSION postgis_tiger_geocoder;
+CREATE TABLE users (
+  user_id serial PRIMARY KEY NOT NULL,
+  username varchar(20),
+  email varchar(100),
+  password varchar(1000),
+  salt varchar(100),
+  last_login date,
+  number_of_logins integer
+);
+CREATE TABLE tracks (
+  track_id serial PRIMARY KEY NOT NULL,
+  user_id integer REFERENCES users(user_id),
+  name varchar(100),
+  description varchar(1000),
+  import_date date
+);
+SELECT AddGeometryColumn('tracks','geom',4326,'LINESTRING',4);
+CREATE INDEX tracks_gix
+  ON tracks
+  USING GIST (geom);
+\q
+CREATE EXTENSION postgis;
+CREATE EXTENSION postgis_topology;
+CREATE EXTENSION fuzzystrmatch;
+CREATE EXTENSION postgis_tiger_geocoder;
+CREATE TABLE users (
+  id serial PRIMARY KEY NOT NULL,
+  username varchar(20),
+  email varchar(100),
+  password varchar(1000),
+  salt varchar(100),
+  last_login date,
+  number_of_logins integer
+);
+CREATE TABLE tracks (
+  id serial PRIMARY KEY NOT NULL,
+  user_id integer REFERENCES users(user_id),
+  name varchar(100),
+  description varchar(1000),
+  import_date date
+);
+SELECT AddGeometryColumn('tracks','geom',4326,'LINESTRING',4);
+CREATE INDEX tracks_gix
+  ON tracks
+  USING GIST (geom);
+CREATE TABLE tracks (
+  id serial PRIMARY KEY NOT NULL,
+  user_id integer REFERENCES users(id),
+  name varchar(100),
+  description varchar(1000),
+  import_date date
+);
+SELECT AddGeometryColumn('tracks','geom',4326,'LINESTRING',4);
+CREATE INDEX tracks_gix
+  ON tracks
+  USING GIST (geom);
+CREATE TABLE photos (
+  id serial PRIMARY KEY,
+  track_id integer REFERENCES tracks(id),
+  file_name varchar(1000),
+  file_path varchar(1000),
+  name varchar(100),
+  description text,
+  width integer,
+  height integer,
+  bits integer,
+  comment text,
+  make varchar(100),
+  model varchar(100),
+  orientation text,
+  x_resolution varchar(10),
+  y_resolution varchar(10),
+  resolution_unit integer,
+  software varchar(50),
+  date_time date,
+  ycb_cr_positioning varchar(50),
+  exposure_time varchar(50),
+  f_number varchar(50),
+  exposure_program varchar(50),
+  iso_speed_ratings varchar(50),
+  date_time_original date,
+  date_time_digitized date,
+  shutter_speed_value varchar(50),
+  aperture_value double precision,
+  brightness_value varchar(50),
+  metering_mode integer,
+  flash integer,
+  focal_length varchar(50),
+  subject_area varchar(50),
+  subsec_time_orginal integer,
+  subsec_time_digitized integer,
+  color_space integer,
+  pixel_x_dimension integer,
+  pixel_y_dimension integer,
+  sensing_method integer,
+  custom_rendered varchar(50),
+  exposure_mode integer,
+  white_balance integer,
+  focal_length_in_35mm_film integer,
+  scene_capture_type integer,
+  gps_latitude_ref varchar(1),
+  gps_latitude varchar(50),
+  gps_longitude_ref varchar(1),
+  gps_longitude varchar(50),
+  gps_altitude_ref varchar(50),
+  gps_altitude varchar(50),
+  gps_time_stamp varchar(50),
+  gps_img_direction_ref varchar(1),
+  gps_img_direction varchar(50),
+  created date
+);
+SELECT AddGeometryColumn('photo','geom',4326,'POINT',3);
+CREATE INDEX photo_gix
+  ON photo
+  USING GIST (geom);
+SELECT AddGeometryColumn('photo','geom',4326,'POINT',3);
+SELECT AddGeometryColumn('photos','geom',4326,'POINT',3);
+CREATE INDEX photo_gix
+  ON photo
+  USING GIST (geom);
+CREATE INDEX photo_gix
+  ON photos
+  USING GIST (geom);
+INSERT INTO users (username,email,password) VALUES ('tkbrewski', 'tedkwasnik@gmail.com', '12345');
+INSERT INTO tracks (id,name,description,import_date) VALUES (1,'Norwell Walk', 'Sunday afternoon stroll',NOW());
+\q
+select ST_GeomAsText(geom) from photos;
+select ST_AsText(geom) from photos;
+select ST_AsText(geom) from photos;
+select ST_AsText(geom) from photos LIMIT 1;
+select ST_AsText(geom) from photos LIMIT 2;
+select ST_AsText(geom) AS A from photos LIMIT 2;
+select ST_AsGeoJSON(geom) AS A from photos LIMIT 2;
+\q
+CREATE EXTENSION postgis;
+CREATE EXTENSION postgis_topology;
+CREATE EXTENSION fuzzystrmatch;
+CREATE EXTENSION postgis_tiger_geocoder;
+CREATE TABLE users (
+  id serial PRIMARY KEY NOT NULL,
+  username varchar(20),
+  email varchar(100),
+  password varchar(1000),
+  salt varchar(100),
+  last_login date,
+  number_of_logins integer
+);
+CREATE TABLE tracks (
+  id serial PRIMARY KEY NOT NULL,
+  user_id integer REFERENCES users(id),
+  name varchar(100),
+  description varchar(1000),
+  import_date date
+);
+SELECT AddGeometryColumn('tracks','geom',4326,'LINESTRING',4);
+CREATE INDEX tracks_gix
+  ON tracks
+  USING GIST (geom);
+CREATE TABLE photos (
+  id serial PRIMARY KEY,
+  track_id integer REFERENCES tracks(id),
+  file_name varchar(1000),
+  file_path varchar(1000),
+  name varchar(100),
+  description text,
+  width integer,
+  height integer,
+  bits integer,
+  comment text,
+  make varchar(100),
+  model varchar(100),
+  orientation text,
+  x_resolution varchar(10),
+  y_resolution varchar(10),
+  resolution_unit integer,
+  software varchar(50),
+  date_time date,
+  ycb_cr_positioning varchar(50),
+  exposure_time varchar(50),
+  f_number varchar(50),
+  exposure_program varchar(50),
+  iso_speed_ratings varchar(50),
+  date_time_original date,
+  date_time_digitized date,
+  shutter_speed_value varchar(50),
+  aperture_value double precision,
+  brightness_value varchar(50),
+  metering_mode integer,
+  flash integer,
+  focal_length varchar(50),
+  subject_area varchar(50),
+  subsec_time_orginal integer,
+  subsec_time_digitized integer,
+  color_space integer,
+  pixel_x_dimension integer,
+  pixel_y_dimension integer,
+  sensing_method integer,
+  custom_rendered varchar(50),
+  exposure_mode integer,
+  white_balance integer,
+  focal_length_in_35mm_film integer,
+  scene_capture_type integer,
+  gps_latitude_ref varchar(1),
+  gps_latitude varchar(50),
+  gps_longitude_ref varchar(1),
+  gps_longitude varchar(50),
+  gps_altitude_ref varchar(50),
+  gps_altitude varchar(50),
+  gps_time_stamp varchar(50),
+  gps_img_direction_ref varchar(1),
+  gps_img_direction varchar(50),
+  created date
+);
+SELECT AddGeometryColumn('photos','geom',4326,'POINT',3);
+CREATE INDEX photo_gix
+  ON photos
+  USING GIST (geom);
+INSERT INTO users (username,email,password) VALUES ('tkbrewski', 'tedkwasnik@gmail.com', '12345');
+INSERT INTO tracks (id,name,description,import_date) VALUES (1,'Norwell Walk', 'Sunday afternoon stroll',NOW());
+\q
+select ST_Transform(geom, 9102008) from photos;
+INSERT into spatial_ref_sys (srid, auth_name, auth_srid, proj4text, srtext) values ( 102243, 'esri', 102008, '+proj=aea +lat_1=20 +lat_2=60 +lat_0=40 +lon_0=-96 +x_0=0 +y_0=0 +ellps=GRS80 +datum=NAD83 +units=m +no_defs ', 'PROJCS["North_America_Albers_Equal_Area_Conic",GEOGCS["GCS_North_American_1983",DATUM["North_American_Datum_1983",SPHEROID["GRS_1980",6378137,298.257222101]],PRIMEM["Greenwich",0],UNIT["Degree",0.017453292519943295]],PROJECTION["Albers_Conic_Equal_Area"],PARAMETER["False_Easting",0],PARAMETER["False_Northing",0],PARAMETER["longitude_of_center",-96],PARAMETER["Standard_Parallel_1",20],PARAMETER["Standard_Parallel_2",60],PARAMETER["latitude_of_center",40],UNIT["Meter",1],AUTHORITY["EPSG","102008"]]');
+select ST_Transform(geom, 9102008) from photos;
+select ST_Transform(geom, 102243) from photos;
+select ST_GeomAsText(ST_Transform(geom, 102243)) from photos;
+select ST_GeomAsText(geom) from photos;
+select ST_AsText(ST_Transform(geom, 102243)) from photos;
+select ST_AsText(geom) from photos;
+select ST_AsText(ST_Transform(geom, 102243)) from photos;
+\q
+SELECT ST_AsText(ST_Transform(geom,102243)) as st_astext FROM photos WHERE track_id =1;
+\q
+CREATE EXTENSION postgis;
+CREATE EXTENSION postgis_topology;
+CREATE EXTENSION fuzzystrmatch;
+CREATE EXTENSION postgis_tiger_geocoder;
+CREATE TABLE users (
+  id serial PRIMARY KEY NOT NULL,
+  username varchar(20),
+  email varchar(100),
+  password varchar(1000),
+  salt varchar(100),
+  last_login date,
+  number_of_logins integer
+);
+CREATE TABLE tracks (
+  id serial PRIMARY KEY NOT NULL,
+  user_id integer REFERENCES users(id),
+  name varchar(100),
+  description varchar(1000),
+  import_date date
+);
+SELECT AddGeometryColumn('tracks','geom',4326,'LINESTRING',4);
+CREATE INDEX tracks_gix
+  ON tracks
+  USING GIST (geom);
+CREATE TABLE photos (
+  id serial PRIMARY KEY,
+  track_id integer REFERENCES tracks(id),
+  file_name varchar(1000),
+  file_path varchar(1000),
+  name varchar(100),
+  description text,
+  width integer,
+  height integer,
+  bits integer,
+  comment text,
+  make varchar(100),
+  model varchar(100),
+  orientation text,
+  x_resolution varchar(10),
+  y_resolution varchar(10),
+  resolution_unit integer,
+  software varchar(50),
+  date_time date,
+  ycb_cr_positioning varchar(50),
+  exposure_time varchar(50),
+  f_number varchar(50),
+  exposure_program varchar(50),
+  iso_speed_ratings varchar(50),
+  date_time_original date,
+  date_time_digitized date,
+  shutter_speed_value varchar(50),
+  aperture_value double precision,
+  brightness_value varchar(50),
+  metering_mode integer,
+  flash integer,
+  focal_length varchar(50),
+  subject_area varchar(50),
+  subsec_time_orginal integer,
+  subsec_time_digitized integer,
+  color_space integer,
+  pixel_x_dimension integer,
+  pixel_y_dimension integer,
+  sensing_method integer,
+  custom_rendered varchar(50),
+  exposure_mode integer,
+  white_balance integer,
+  focal_length_in_35mm_film integer,
+  scene_capture_type integer,
+  gps_latitude_ref varchar(1),
+  gps_latitu  gps_latitu  g
+  gps_longitude_ref varchar(1),
+  gps_longitude varchar(50),
+  gps_altitude_ref varchar(50),
+  gps_altitude varchar(50),
+  gps_time_stamp varchar(50),
+  gps_img_direction_ref varchar(1),
+  gps_img_direction varchar(50),
+  created date
+);
+CREATE TABLE photos (
+  id serial PRIMARY KEY,
+  track_id integer REFERENCES tracks(id),
+  file_name varchar(1000),
+  file_path varchar(1000),
+  name varchar(100),
+  description text,
+  width integer,
+  height integer,
+  bits integer,
+  comment text,
+  make varchar(100),
+  model varchar(100),
+  orientation text,
+  x_resolution varchar(10),
+  y_resolution varchar(10),
+  resolution_unit integer,
+  software varchar(50),
+  date_time date,
+  ycb_cr_positioning varchar(50),
+  exposure_time varchar(50),
+  f_number varchar(50),
+  exposure_program varchar(50),
+  iso_speed_ratings varchar(50),
+  date_time_original date,
+  date_time_digitized date,
+  shutter_speed_value varchar(50),
+  aperture_value double precision,
+  brightness_value varchar(50),
+  metering_mode integer,
+  flash integer,
+  focal_length varchar(50),
+  subject_area varchar(50),
+  subsec_time_orginal integer,
+  subsec_time_digitized integer,
+  color_space integer,
+  pixel_x_dimension integer,
+  pixel_y_dimension integer,
+  sensing_method integer,
+  custom_rendered varchar(50),
+  exposure_mode integer,
+  white_balance integer,
+  focal_length_in_35mm_film integer,
+  scene_capture_type integer,
+  gps_latitude_ref varchar(1),
+  gps_latitude varchar(50),
+  gps_longitude_ref varchar(1),
+  gps_longitude varchar(50),
+  gps_altitude_ref varchar(50),
+  gps_altitude varchar(50),
+  gps_time_stamp varchar(50),
+  gps_img_direction_ref varchar(1),
+  gps_img_direction varchar(50),
+  created date
+);
+SELECT AddGeometryColumn('photos','geom',4326,'POINT',3);
+CREATE INDEX photo_gix
+  ON photos
+  USING GIST (geom);
+CREATE TABLE viewers (
+  id serial PRIMARY KEY,
+  photo_id integer,
+  track_id integer,
+);
+SELECT AddGeometryColumn('viewers','geom',4326,'POLYGON',2);
+CREATE INDEX tracks_gix
+  ON viewers
+  USING GIST (geom);
+SELECT AddGeometryColumn('photos','geom',4326,'POINT',3);
+CREATE INDEX photo_gix
+  ON photos
+  USING GIST (geom);
+CREATE TABLE viewers (
+  id serial PRIMARY KEY,
+  photo_id integer,
+  track_id integer,
+);
+CREATE TABLE viewers (
+  id serial PRIMARY KEY,
+  photo_id integer,
+  track_id integer
+);
+SELECT AddGeometryColumn('viewers','geom',4326,'POLYGON',2);
+CREATE INDEX tracks_gix
+  ON viewers
+  USING GIST (geom);
+CREATE INDEX viewers_gix
+  ON viewers
+  USING GIST (geom);
+INSERT INTO users (username,email,password) VALUES ('tkbrewski', 'tedkwasnik@gmail.com', '12345');
+INSERT INTO tracks (id,name,description,import_date) VALUES (1,'Norwell Walk', 'Sunday afternoon stroll',NOW());
+INSERT into spatial_ref_sys (srid, auth_name, auth_srid, proj4text, srtext) values ( 102243, 'esri', 102008, '+proj=aea +lat_1=20 +lat_2=60 +lat_0=40 +lon_0=-96 +x_0=0 +y_0=0 +ellps=GRS80 +datum=NAD83 +units=m +no_defs ', 'PROJCS["North_America_Albers_Equal_Area_Conic",GEOGCS["GCS_North_American_1983",DATUM["North_American_Datum_1983",SPHEROID["GRS_1980",6378137,298.257222101]],PRIMEM["Greenwich",0],UNIT["Degree",0.017453292519943295]],PROJECTION["Albers_Conic_Equal_Area"],PARAMETER["False_Easting",0],PARAMETER["False_Northing",0],PARAMETER["longitude_of_center",-96],PARAMETER["Standard_Parallel_1",20],PARAMETER["Standard_Parallel_2",60],PARAMETER["latitude_of_center",40],UNIT["Meter",1],AUTHORITY["EPSG","102008"]]');
+\q
+CREATE EXTENSION postgis;
+CREATE EXTENSION postgis_topology;
+CREATE EXTENSION fuzzystrmatch;
+CREATE EXTENSION postgis_tiger_geocoder;
+CREATE TABLE users (
+  id serial PRIMARY KEY NOT NULL,
+  username varchar(20),
+  email varchar(100),
+  password varchar(1000),
+  salt varchar(100),
+  last_login date,
+  number_of_logins integer
+);
+CREATE TABLE tracks (
+  id serial PRIMARY KEY NOT NULL,
+  user_id integer REFERENCES users(id),
+  name varchar(100),
+  description varchar(1000),
+  import_date date
+);
+SELECT AddGeometryColumn('tracks','geom',4326,'LINESTRING',4);
+CREATE INDEX tracks_gix
+  ON tracks
+  USING GIST (geom);
+CREATE TABLE photos (
+  id serial PRIMARY KEY,
+  track_id integer REFERENCES tracks(id),
+  file_name varchar(1000),
+  file_path varchar(1000),
+  name varchar(100),
+  description text,
+  width integer,
+  height integer,
+  bits integer,
+  comment text,
+  make varchar(100),
+  model varchar(100),
+  orientation text,
+  x_resolution varchar(10),
+  y_resolution varchar(10),
+  resolution_unit integer,
+  software varchar(50),
+  date_time date,
+  ycb_cr_positioning varchar(50),
+  exposure_time varchar(50),
+  f_number varchar(50),
+  exposure_program varchar(50),
+  iso_speed_ratings varchar(50),
+  date_time_original date,
+  date_time_digitized date,
+  shutter_speed_value varchar(50),
+  aperture_value double precision,
+  brightness_value varchar(50),
+  metering_mode integer,
+  flash integer,
+  focal_length varchar(50),
+  subject_area varchar(50),
+  subsec_time_orginal integer,
+  subsec_time_digitized integer,
+  color_space integer,
+  pixel_x_dimension integer,
+  pixel_y_dimension integer,
+  sensing_method integer,
+  custom_rendered varchar(50),
+  exposure_mode integer,
+  white_balance integer,
+  focal_length_in_35mm_film integer,
+  scene_capture_type integer,
+  gps_latitude_ref varchar(1),
+  gps_latitude varchar(50),
+  gps_longitude_ref varchar(1),
+  gps_longitude varchar(50),
+  gps_altitude_ref varchar(50),
+  gps_altitude varchar(50),
+  gps_time_stamp varchar(50),
+  gps_img_direction_ref varchar(1),
+  gps_img_direction varchar(50),
+  created date
+);
+SELECT AddGeometryColumn('photos','geom',4326,'POINT',3);
+CREATE INDEX photo_gix
+  ON photos
+  USING GIST (geom);
+CREATE TABLE viewers (
+  id serial PRIMARY KEY,
+  photo_id integer,
+  track_id integer
+);
+SELECT AddGeometryColumn('viewers','geom',4326,'POLYGON',2);
+CREATE INDEX viewers_gix
+  ON viewers
+  USING GIST (geom);
+INSERT INTO users (username,email,password) VALUES ('tkbrewski', 'tedkwasnik@gmail.com', '12345');
+INSERT INTO tracks (id,name,description,import_date) VALUES (1,'Norwell Walk', 'Sunday afternoon stroll',NOW());
+INSERT into spatial_ref_sys (srid, auth_name, auth_srid, proj4text, srtext) values ( 102243, 'esri', 102008, '+proj=aea +lat_1=20 +lat_2=60 +lat_0=40 +lon_0=-96 +x_0=0 +y_0=0 +ellps=GRS80 +datum=NAD83 +units=m +no_defs ', 'PROJCS["North_America_Albers_Equal_Area_Conic",GEOGCS["GCS_North_American_1983",DATUM["North_American_Datum_1983",SPHEROID["GRS_1980",6378137,298.257222101]],PRIMEM["Greenwich",0],UNIT["Degree",0.017453292519943295]],PROJECTION["Albers_Conic_Equal_Area"],PARAMETER["False_Easting",0],PARAMETER["False_Northing",0],PARAMETER["longitude_of_center",-96],PARAMETER["Standard_Parallel_1",20],PARAMETER["Standard_Parallel_2",60],PARAMETER["latitude_of_center",40],UNIT["Meter",1],AUTHORITY["EPSG","102008"]]');
+\q
+\d
+\q
+CREATE EXTENSION postgis;
+CREATE EXTENSION postgis_topology;
+CREATE EXTENSION fuzzystrmatch;
+CREATE EXTENSION postgis_tiger_geocoder;
+CREATE TABLE users (
+  id serial PRIMARY KEY NOT NULL,
+  username varchar(20),
+  email varchar(100),
+  password varchar(1000),
+  salt varchar(100),
+  last_login date,
+  number_of_logins integer
+);
+CREATE TABLE tracks (
+  id serial PRIMARY KEY NOT NULL,
+  user_id integer REFERENCES users(id),
+  name varchar(100),
+  description varchar(1000),
+  import_date date
+);
+SELECT AddGeometryColumn('tracks','geom',4326,'LINESTRING',4);
+CREATE INDEX tracks_gix
+  ON tracks
+  USING GIST (geom);
+CREATE TABLE photos (
+  id serial PRIMARY KEY,
+  track_id integer REFERENCES tracks(id),
+  file_name varchar(1000),
+  file_path varchar(1000),
+  name varchar(100),
+  description text,
+  width integer,
+  height integer,
+  bits integer,
+  comment text,
+  make varchar(100),
+  model varchar(100),
+  orientation text,
+  x_resolution varchar(10),
+  y_resolution varchar(10),
+  resolution_unit integer,
+  software varchar(50),
+  date_time date,
+  ycb_cr_positioning varchar(50),
+  exposure_time varchar(50),
+  f_number varchar(50),
+  exposure_program varchar(50),
+  iso_speed_ratings varchar(50),
+  date_time_original date,
+  date_time_digitized date,
+  shutter_speed_value varchar(50),
+  aperture_value double precision,
+  brightness_value varchar(50),
+  metering_mode integer,
+  flash integer,
+  focal_length varchar(50),
+  subject_area varchar(50),
+  subsec_time_orginal integer,
+  subsec_time_digitized integer,
+  color_space integer,
+  pixel_x_dimension integer,
+  pixel_y_dimension integer,
+  sensing_method integer,
+  custom_rendered varchar(50),
+  exposure_mode integer,
+  white_balance integer,
+  focal_length_in_35mm_film integer,
+  scene_capture_type integer,
+  gps_latitude_ref varchar(1),
+  gps_latitude varchar(50),
+  gps_longitude_ref varchar(1),
+  gps_longitude varchar(50),
+  gps_altitude_ref varchar(50),
+  gps_altitude varchar(50),
+  gps_time_stamp varchar(50),
+  gps_img_direction_ref varchar(1),
+  gps_img_direction varchar(50),
+  viewer_coords text,
+  created date
+);
+SELECT AddGeometryColumn('photos','geom',4326,'POINT',3);
+CREATE INDEX photo_gix
+  ON photos
+  USING GIST (geom);
+CREATE TABLE viewers (
+  id serial PRIMARY KEY,
+  photo_id integer,
+  track_id integer
+);
+SELECT AddGeometryColumn('viewers','geom',4326,'POLYGON',2);
+CREATE INDEX viewers_gix
+  ON viewers
+  USING GIST (geom);
+INSERT INTO users (username,email,password) VALUES ('tkbrewski', 'tedkwasnik@gmail.com', '12345');
+INSERT INTO tracks (id,name,description,import_date) VALUES (1,'Norwell Walk', 'Sunday afternoon stroll',NOW());
+INSERT into spatial_ref_sys (srid, auth_name, auth_srid, proj4text, srtext) values ( 102243, 'esri', 102008, '+proj=aea +lat_1=20 +lat_2=60 +lat_0=40 +lon_0=-96 +x_0=0 +y_0=0 +ellps=GRS80 +datum=NAD83 +units=m +no_defs ', 'PROJCS["North_America_Albers_Equal_Area_Conic",GEOGCS["GCS_North_American_1983",DATUM["North_American_Datum_1983",SPHEROID["GRS_1980",6378137,298.257222101]],PRIMEM["Greenwich",0],UNIT["Degree",0.017453292519943295]],PROJECTION["Albers_Conic_Equal_Area"],PARAMETER["False_Easting",0],PARAMETER["False_Northing",0],PARAMETER["longitude_of_center",-96],PARAMETER["Standard_Parallel_1",20],PARAMETER["Standard_Parallel_2",60],PARAMETER["latitude_of_center",40],UNIT["Meter",1],AUTHORITY["EPSG","102008"]]');
+\q
+\d
+select * from photos;
+\q
+CREATE EXTENSION postgis;
+CREATE EXTENSION postgis_topology;
+CREATE EXTENSION fuzzystrmatch;
+CREATE EXTENSION postgis_tiger_geocoder;
+CREATE TABLE users (
+  id serial PRIMARY KEY NOT NULL,
+  username varchar(20),
+  email varchar(100),
+  password varchar(1000),
+  salt varchar(100),
+  last_login date,
+  number_of_logins integer
+);
+CREATE TABLE tracks (
+  id serial PRIMARY KEY NOT NULL,
+  user_id integer REFERENCES users(id),
+  name varchar(100),
+  description varchar(1000),
+  import_date date
+);
+SELECT AddGeometryColumn('tracks','geom',4326,'LINESTRING',4);
+CREATE INDEX tracks_gix
+  ON tracks
+  USING GIST (geom);CREATE TABLE photos (
+  id serial PRIMARY KEY,
+  track_id integer REFERENCES tracks(id),
+  file_name varchar(1000),
+  file_path varchar(1000),
+  name varchar(100),
+  description text,
+  width integer,
+  height integer,
+  bits integer,
+  comment text,
+  make varchar(100),
+  model varchar(100),
+  orientation text,
+  x_resolution varchar(10),
+  y_resolution varchar(10),
+  resolution_unit integer,
+  software varchar(50),
+  date_time date,
+  ycb_cr_positioning varchar(50),
+  exposure_time varchar(50),
+  f_number varchar(50),
+  exposure_program varchar(50),
+  iso_speed_ratings varchar(50),
+  date_time_original date,
+  date_time_digitized date,
+  shutter_speed_value varchar(50),
+  aperture_value double precision,
+  brightness_value varchar(50),
+  metering_mode integer,
+  flash integer,
+  focal_length varchar(50),
+  subject_area varchar(50),
+  subsec_time_orginal integer,
+  subsec_time_digitized integer,
+  color_space integer,
+  pixel_x_dimension integer,
+  pixel_y_dimension integer,
+  sensing_method integer,
+  custom_rendered varchar(50),
+  exposure_mode integer,
+  white_balance integer,
+  focal_length_in_35mm_film integer,
+  scene_capture_type integer,
+  gps_latitude_ref varchar(1),
+  gps_latitude varchar(50),
+  gps_longitude_ref varchar(1),
+  gps_longitude varchar(50),
+  gps_altitude_ref varchar(50),
+  gps_altitude varchar(50),
+  gps_time_stamp varchar(50),
+  gps_img_direction_ref varchar(1),
+  gps_img_direction varchar(50),
+  viewer_coords text(5000),
+  created date
+);
+  id serial PRIMARY KEY,
+  track_id integer REFERENCES tracks(id),
+  file_name varchar(1000),
+  file_path varchar(1000),
+  name varchar(100),
+  description text,
+  width integer,
+  height integer,
+  bits integer,
+  comment text,
+  make varchar(100),
+  model varchar(100),
+  orientation text,
+  x_resolution varchar(10),
+  y_resolution varchar(10),
+  resolution_unit integer,
+  software varchar(50),
+  date_time date,
+  ycb_cr_positioning varchar(50),
+  exposure_time varchar(50),
+  f_number varchar(50),
+  exposure_program varchar(50),
+  iso_speed_ratings varchar(50),
+  date_time_original date,
+  date_time_digitized date,
+  shutter_speed_value varchar(50),
+  aperture_value double precision,
+  brightness_value varchar(50),
+  metering_mode integer,
+  flash integer,
+  focal_length varchar(50),
+  subject_area varchar(50),
+  subsec_time_orginal integer,
+  subsec_time_digitized integer,
+  color_space integer,
+  pixel_x_dimension integer,
+  pixel_y_dimension integer,
+  sensing_method integer,
+  custom_rendered varchar(50),
+  exposure_mode integer,
+  white_balance integer,
+  focal_length_in_35mm_film integer,
+  scene_capture_type integer,
+  gps_latitude_ref varchar(1),
+  gps_latitude varchar(50),
+  gps_longitude_ref varchar(1),
+  gps_longitude varchar(50),
+  gps_altitude_ref varchar(50),
+  gps_altitude varchar(50),
+  gps_time_stamp varchar(50),
+  gps_img_direction_ref varchar(1),
+  gps_img_direction varchar(50),
+  viewer_coords text(5000),
+  created date
+);
+  id serial PRIMARY KEY,
+  track_id integer REFERENCES tracks(id),
+  file_name varchar(1000),
+  file_path varchar(1000),
+  name varchar(100),
+  description text,
+  width integer,
+  height integer,
+  bits integer,
+  comment text,
+  make varchar(100),
+  model varchar(100),
+  orientation text,
+  x_resolution varchar(10),
+  y_resolution varchar(10),
+  resolution_unit integer,
+  software varchar(50),
+  date_time date,
+  ycb_cr_positioning varchar(50),
+  exposure_time varchar(50),
+  f_number varchar(50),
+  exposure_program varchar(50),
+  iso_speed_ratings varchar(50),
+  date_time_original date,
+  date_time_digitized date,
+  shutter_speed_value varchar(50),
+  aperture_value double precision,
+  brightness_value varchar(50),
+  metering_mode integer,
+  flash integer,
+  focal_length varchar(50),
+  subject_area varchar(50),
+  subsec_time_orginal integer,
+  subsec_time_digitized integer,
+  color_space integer,
+  pixel_x_dimension integer,
+  pixel_y_dimension integer,
+  sensing_method integer,
+  custom_rendered varchar(50),
+  exposure_mode integer,
+  white_balance integer,
+  focal_length_in_35mm_film integer,
+  scene_capture_type integer,
+  gps_latitude_ref varchar(1),
+  gps_latitude varchar(50),
+  gps_longitude_ref varchar(1),
+  gps_longitude varchar(50),
+  gps_altitude_ref varchar(50),
+  gps_altitude varchar(50),
+  gps_time_stamp varchar(50),
+  gps_img_direction_ref varchar(1),
+  gps_img_direction varchar(50),
+  viewer_coords text(5000),
+  created date
+);
+CREATE TABLE photos (
+  id serial PRIMARY KEY,
+  track_id integer REFERENCES tracks(id),
+  file_name varchar(1000),
+  file_path varchar(1000),
+  name varchar(100),
+  description text,
+  width integer,
+  height integer,
+  bits integer,
+  comment text,
+  make varchar(100),
+  model varchar(100),
+  orientation text,
+  x_resolution varchar(10),
+  y_resolution varchar(10),
+  resolution_unit integer,
+  software varchar(50),
+  date_time date,
+  ycb_cr_positioning varchar(50),
+  exposure_time varchar(50),
+  f_number varchar(50),
+  exposure_program varchar(50),
+  iso_speed_ratings varchar(50),
+  date_time_original date,
+  date_time_digitized date,
+  shutter_speed_value varchar(50),
+  aperture_value double precision,
+  brightness_value varchar(50),
+  metering_mode integer,
+  flash integer,
+  focal_length varchar(50),
+  subject_area varchar(50),
+  subsec_time_orginal integer,
+  subsec_time_digitized integer,
+  color_space integer,
+  pixel_x_dimension integer,
+  pixel_y_dimension integer,
+  sensing_method integer,
+  custom_rendered varchar(50),
+  exposure_mode integer,
+  white_balance integer,
+  focal_length_in_35mm_film integer,
+  scene_capture_type integer,
+  gps_latitude_ref varchar(1),
+  gps_latitude varchar(50),
+  gps_longitude_ref varchar(1),
+  gps_longitude varchar(50),
+  gps_altitude_ref varchar(50),
+  gps_altitude varchar(50),
+  gps_time_stamp varchar(50),
+  gps_img_direction_ref varchar(1),
+  gps_img_direction varchar(50),
+  viewer_coords text(5000),
+  created date
+);
+CREATE TABLE photos (
+  id serial PRIMARY KEY,
+  track_id integer REFERENCES tracks(id),
+  file_name varchar(1000),
+  file_path varchar(1000),
+  name varchar(100),
+  description text,
+  width integer,
+  height integer,
+  bits integer,
+  comment text,
+  make varchar(100),
+  model varchar(100),
+  orientation text,
+  x_resolution varchar(10),
+  y_resolution varchar(10),
+  resolution_unit integer,
+  software varchar(50),
+  date_time date,
+  ycb_cr_positioning varchar(50),
+  exposure_time varchar(50),
+  f_number varchar(50),
+  exposure_program varchar(50),
+  iso_speed_ratings varchar(50),
+  date_time_original date,
+  date_time_digitized date,
+  shutter_speed_value varchar(50),
+  aperture_value double precision,
+  brightness_value varchar(50),
+  metering_mode integer,
+  flash integer,
+  focal_length varchar(50),
+  subject_area varchar(50),
+  subsec_time_orginal integer,
+  subsec_time_digitized integer,
+  color_space integer,
+  pixel_x_dimension integer,
+  pixel_y_dimension integer,
+  sensing_method integer,
+  custom_rendered varchar(50),
+  exposure_mode integer,
+  white_balance integer,
+  focal_length_in_35mm_film integer,
+  scene_capture_type integer,
+  gps_latitude_ref varchar(1),
+  gps_latitude varchar(50),
+  gps_longitude_ref varchar(1),
+  gps_longitude varchar(50),
+  gps_altitude_ref varchar(50),
+  gps_altitude varchar(50),
+  gps_time_stamp varchar(50),
+  gps_img_direction_ref varchar(1),
+  gps_img_direction varchar(50),
+  viewer_coords text(5000),
+  created date
+);CREATE TABLE photos (
+  id serial PRIMARY KEY,
+  track_id integer REFERENCES tracks(id),
+  file_name varchar(1000),
+  file_path varchar(1000),
+  name varchar(100),
+  description text,
+  width integer,
+  height integer,
+  bits integer,
+  comment text,
+  make varchar(100),
+  model varchar(100),
+  orientation text,
+  x_resolution varchar(10),
+  y_resolution varchar(10),
+  resolution_unit integer,
+  software varchar(50),
+  date_time date,
+  ycb_cr_positioning varchar(50),
+  exposure_time varchar(50),
+  f_number varchar(50),
+  exposure_program varchar(50),
+  iso_speed_ratings varchar(50),
+  date_time_original date,
+  date_time_digitized date,
+  shutter_speed_value varchar(50),
+  aperture_value double precision,
+  brightness_value varchar(50),
+  metering_mode integer,
+  flash integer,
+  focal_length varchar(50),
+  subject_area varchar(50),
+  subsec_time_orginal integer,
+  subsec_time_digitized integer,
+  color_space integer,
+  pixel_x_dimension integer,
+  pixel_y_dimension integer,
+  sensing_method integer,
+  custom_rendered varchar(50),
+  exposure_mode integer,
+  white_balance integer,
+  focal_length_in_35mm_film integer,
+  scene_capture_type integer,
+  gps_latitude_ref varchar(1),
+  gps_latitude varchar(50),
+  gps_longitude_ref varchar(1),
+  gps_longitude varchar(50),
+  gps_altitude_ref varchar(50),
+  gps_altitude varchar(50),
+  gps_time_stamp varchar(50),
+  gps_img_direction_ref varchar(1),
+  gps_img_direction varchar(50),
+  viewer_coords varchar(5000),
+  created date
+);
+SELECT AddGeometryColumn('photos','geom',4326,'POINT',3);
+CREATE INDEX photo_gix
+  ON photos
+  USING GIST (geom);
+CREATE TABLE viewers (
+  id serial PRIMARY KEY,
+  photo_id integer,
+  track_id integer
+);
+SELECT AddGeometryColumn('viewers','geom',4326,'POLYGON',2);
+CREATE INDEX viewers_gix
+  ON viewers
+  USING GIST (geom);
+INSERT INTO users (username,email,password) VALUES ('tkbrewski', 'tedkwasnik@gmail.com', '12345');
+INSERT INTO tracks (id,name,description,import_date) VALUES (1,'Norwell Walk', 'Sunday afternoon stroll',NOW());
+INSERT into spatial_ref_sys (srid, auth_name, auth_srid, proj4text, srtext) values ( 102243, 'esri', 102008, '+proj=aea +lat_1=20 +lat_2=60 +lat_0=40 +lon_0=-96 +x_0=0 +y_0=0 +ellps=GRS80 +datum=NAD83 +units=m +no_defs ', 'PROJCS["North_America_Albers_Equal_Area_Conic",GEOGCS["GCS_North_American_1983",DATUM["North_American_Datum_1983",SPHEROID["GRS_1980",6378137,298.257222101]],PRIMEM["Greenwich",0],UNIT["Degree",0.017453292519943295]],PROJECTION["Albers_Conic_Equal_Area"],PARAMETER["False_Easting",0],PARAMETER["False_Northing",0],PARAMETER["longitude_of_center",-96],PAINSERT into spatialarallel_1",20],PARAMETER["Standard_Parallel_2",60],PARAMETER["latitude_of_center",40],UNITI"Meter",1],AUTHORITY["EPSG","102008"]]');
+\q
+select * from tracks;
+\q
+CREATE EXTENSION postgis;
+CREATE EXTENSION postgis_topology;
+CREATE EXTENSION fuzzystrmatch;
+CREATE EXTENSION postgis_tiger_geocoder;
+CREATE TABLE users (
+  id serial PRIMARY KEY NOT NULL,
+  username varchar(20),
+  email varchar(100),
+  password varchar(1000),
+  salt varchar(100),
+  last_login date,
+  number_of_logins integer
+);
+CREATE TABLE tracks (
+  id serial PRIMARY KEY NOT NULL,
+  user_id integer REFERENCES users(id),
+  name varchar(100),
+  description varchar(1000),
+  import_date date
+);
+SELECT AddGeometryColumn('tracks','geom',4326,'LINESTRING',4);
+CREATE INDEX tracks_gix
+  ON tracks
+  USING GIST (geom);
+CREATE TABLE photos (
+  id serial PRIMARY KEY,
+  track_id integer REFERENCES tracks(id),
+  file_name varchar(1000),
+  file_path varchar(1000),
+  name varchar(100),
+  description text,
+  width integer,
+  height integer,
+  bits integer,
+  comment text,
+  make varchar(100),
+  model varchar(100),
+  orientation text,
+  x_resolution varchar(10),
+  y_resolution varchar(10),
+  resolution_unit integer,
+  software varchar(50),
+  date_time date,
+  ycb_cr_positioning varchar(50),
+  exposure_time varchar(50),
+  f_number varchar(50),
+  exposure_program varchar(50),
+  iso_speed_ratings varchar(50),
+  date_time_original date,
+  date_time_digitized date,
+  shutter_speed_value varchar(50),
+  aperture_value double precision,
+  brightness_value varchar(50),
+  metering_mode integer,
+  flash integer,
+  focal_length varchar(50),
+  subject_area varchar(50),
+  subsec_time_orginal integer,
+  subsec_time_digitized integer,
+  color_space integer,
+  pixel_x_dimension integer,
+  pixel_y_dimension integer,
+  sensing_m  sensing_m  sensinstom_rendered varchar(50),
+  exposure_mode integer,
+  white_balance integer,
+  focal_length_in_35mm_film integer,
+  scene_capture_type integer,
+  gps_latitude_ref varchar(1),
+  gps_latitude varchar(50),
+  gps_longitude_ref varchar(1),
+  gps_longitude varchar(50),
+  gps_altitude_ref varchar(50),
+  gps_altitude varchar(50),
+  gps_time_stamp varchar(50),
+  gps_img_direction_ref varchar(1),
+  gps_img_direction varchar(50),
+  viewer_coords varchar(5000),
+  created date
+);
+SELECT AddGeometryColumn('tracks','geom',4326,'LINESTRING',4);
+CREATE INDEX tracks_gix
+  ON tracks
+  USING GIST (geom);
+CREATE TABLE photos (
+  id serial PRIMARY KEY,
+  track_id integer REFERENCES tracks(id),
+  file_name varchar(1000),
+  file_path varchar(1000),
+  name varchar(100),
+  description text,
+  width integer,
+  height integer,
+  bits integer,
+  comment text,
+  make varchar(100),
+  model varchar(100),
+  orientation text,
+  x_resolution varchar(10),
+  y_resolution varchar(10),
+  resolution_unit integer,
+  software varchar(50),
+  date_time date,
+  ycb_cr_positioning varchar(50),
+  exposure_time varchar(50),
+  f_number varchar(50),
+  exposure_program varchar(50),
+  iso_speed_ratings varchar(50),
+  date_time_original date,
+  date_time_digitized date,
+  shutter_speed_value varchar(50),
+  aperture_value double precision,
+  brightness_value varchar(50),
+  metering_mode integer,
+  flash integer,
+  focal_length varchar(50),
+  subject_area varchar(50),
+  subsec_time_orginal integer,
+  subsec_time_digitized integer,
+  color_space integer,
+  pixel_x_dimension integer,
+  pixel_y_dimension integer,
+  sensing_method integer,
+  custom_rendered varchar(50),
+  exposure_mode integer,
+  white_balance integer,
+  focal_length_in_35mm_film integer,
+  scene_capture_type integer,
+  gps_latitude_ref varchar(1),
+  gps_latitude varchar(50),
+  gps_longitude_ref varchar(1),
+  gps_longitude varchar(50),
+  gps_altitude_ref varchar(50),
+  gps_altitude varchar(50),
+  gps_time_stamp varchar(50),
+  gps_img_direction_ref varchar(1),
+  gps_img_direction varchar(50),
+  viewer_coords varchar(5000),
+  created date
+);
+SELECT AddGeometryColumn('photos','geom',4326,'POINT',3);
+CREATE INDEX photo_gix
+  ON photos
+  USING GIST (geom);
+CREATE TABLE viewers (
+  id serial PRIMARY KEY,
+  photo_id integer,
+  track_id integer
+);
+SELECT AddGeometryColumn('viewers','geom',4326,'POLYGON',2);
+CREATE INDEX viewers_gix
+  ON viewers
+  USING GIST (geom);
+INSERT INTO users (username,email,password) VALUES ('tkbrewski', 'tedkwasnik@gmail.com', '12345');
+INSERT INTO tracks (id,name,description,import_date) VALUES (1,'Norwell Walk', 'Sunday afternoon stroll',NOW());
+INSERT into spatial_ref_sys (srid, auth_name, auth_srid, proj4text, srtext) values ( 102243, 'esri', 102008, '+proj=aea +lat_1=20 +lat_2=60 +lat_0=40 +lon_0=-96 +x_0=0 +y_0=0 +ellps=GRS80 +datum=NAD83 +units=m +no_defs ', 'PROJCS["North_America_Albers_Equal_Area_Conic",GEOGCS["GCS_North_American_1983",DATUM["North_American_Datum_1983",SPHEROID["GRS_1980",6378137,298.257222101]],PRIMEM["Greenwich",0],UNIT["Degree",0.017453292519943295]],PROJECTION["Albers_Conic_Equal_Area"],PARAMETER["False_Easting",0],PARAMETER["False_Northing",0],PARAMETER["longitude_of_center",-96],PARAMETER["Standard_Parallel_1",20],PARAMETER["Standard_Parallel_2",60],PARAMETER["latitude_of_center",40],UNIT["Meter",1],AUTHORITY["EPSG","102008"]]');
+\q
+CREATE EXTENSION postgis;
+CREATE EXTENSION postgis_topology;
+CREATE EXTENSION fuzzystrmatch;
+CREATE EXTENSION postgis_tiger_geocoder;
+CREATE TABLE users (
+  id serial PRIMARY KEY NOT NULL,
+  username varchar(20),
+  email varchar(100),
+  password varchar(1000),
+  salt varchar(100),
+  last_login date,
+  number_of_logins integer
+);
+CREATE TABLE tracks (
+  id serial PRIMARY KEY NOT NULL,
+  user_id integer REFERENCES users(id),
+  name varchar(100),
+  description varchar(1000),
+  import_date date
+);
+SELECT AddGeometryColumn('tracks','geom',4326,'LINESTRING',4);
+CREATE INDEX tracks_gix
+  ON tracks
+  USING GIST (geom);
+CREATE TABLE photos (
+  id serial PRIMARY KEY,
+  track_id integer REFERENCES tracks(id),
+  file_name varchar(1000),
+  file_path varchar(1000),
+  name varchar(100),
+  description text,
+  width integer,
+  height integer,
+  bits integer,
+  comment text,
+  make varchar(100),
+  model varchar(100),
+  orientation text,
+  x_resolution varchar(10),
+  y_resolution varchar(10),
+  resolution_unit integer,
+  software varchar(50),
+  date_time date,
+  ycb_cr_positioning varchar(50),
+  exposure_time varchar(50),
+  f_number varchar(50),
+  exposure_program varchar(50),
+  iso_speed_ratings varchar(50),
+  date_time_original date,
+  date_time_digitized date,
+  shutter_speed_value varchar(50),
+  aperture_value double precision,
+  brightness_value varchar(50),
+  metering_mode integer,
+  flash integer,
+  focal_length varchar(50),
+  subject_area varchar(50),
+  subsec_time_orginal integer,
+  subsec_time_digitized integer,
+  color_space integer,
+  pixel_x_dimension integer,
+  pixel_y_dimension integer,
+  sensing_method integer,
+  custom_rendered varchar(50),
+  exposure_mode integer,
+  white_balance integer,
+  focal_length_in_35mm_film integer,
+  scene_capture_type integer,
+  gps_latitude_ref varchar(1),
+  gps_latitude varchar(50),
+  gps_longitude_ref varchar(1),
+  gps_longitude varchar(50),
+  gps_altitude_ref varchar(50),
+  gps_altitude varchar(50),
+  gps_time_stamp varchar(50),
+  gps_img_direction_ref varchar(1),
+  gps_img_direction varchar(50),
+  viewer_coords varchar(5000),
+  created date
+);
+SELECT AddGeometryColumn('photos','geom',4326,'POINT',3);
+CREATE INDEX photo_gix
+  ON photos
+  USING GIST (geom);
+CREATE TABLE viewers (
+  id serial PRIMARY KEY,
+  photo_id integer,
+  track_id integer
+);
+SELECT AddGeometryColumn('viewers','geom',4326,'POLYGON',2);
+CREATE INDEX viewers_gix
+  ON viewers
+  USING GIST (geom);
+INSERT INTO users (username,email,password) VALUES ('tkbrewski', 'tedkwasnik@gmail.com', '12345');
+INSERT INTO tracks (id,name,description,import_date) VALUES (1,'Norwell Walk', 'Sunday afternoon stroll',NOW());
+INSERT into spatial_ref_sys (srid, auth_name, auth_srid, proj4text, srtext) values ( 102243, 'esri', 102008, '+proj=aea +lat_1=20 +lat_2=60 +lat_0=40 +lon_0=-96 +x_0=0 +y_0=0 +ellps=GRS80 +datum=NAD83 +units=m +no_defs ', 'PROJCS["North_America_Albers_Equal_Area_Conic",GEOGCS["GCS_North_American_1983",DATUM["North_American_Datum_1983",SPHEROID["GRS_1980",6378137,298.257222101]],PRIMEM["Greenwich",0],UNIT["Degree",0.017453292519943295]],PROJECTION["Albers_Conic_Equal_Area"],PARAMETER["False_Easting",0],PARAMETER["False_Northing",0],PARAMETER["longitude_of_center",-96],PARAMETER["Standard_Parallel_1",20],PARAMETER["Standard_Parallel_2",60],PARAMETER["latitude_of_center",40],UNIT["Meter",1],AUTHORITY["EPSG","102008"]]');
+cd dropb
+\q
+\s photos
