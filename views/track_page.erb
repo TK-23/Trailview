@@ -3,22 +3,9 @@
 <div id = "my_map"></div>
 <script>
 
-  function initialize_user_map () {
-
-      map = L.mapbox.map('my_map', 'examples.map-i86nkdio').setView([42.15, -70.78], 15);
-
-  // //     var tracks = L.mapbox.featureLayer(tracksJSON);
-  // //       tracks.addTo(map);
-  // //       map.fitBounds(tracks.getBounds());
-
-      marker = L.marker([current_photo.lat,current_photo.long]).addTo(map);
-      viewer = L.multiPolygon([JSON.parse(current_photo.viewer_coords)]).addTo(map);
-
-  }
-
   window.onload = function() { prepareEventHandlers();};
 
-   function prepareEventHandlers() {
+  function prepareEventHandlers() {
 
     position = 0;
 
@@ -35,6 +22,21 @@
 
     next.addEventListener('click', advance);
     back.addEventListener('click', retreat);
+  }
+
+
+  function initialize_user_map () {
+
+    map = L.mapbox.map('my_map', 'examples.map-i86nkdio');
+
+   // var tracks = L.mapbox.featureLayer(<%= @track_geoJSON%>);
+
+   // tracks.addTo(map);
+  //  map.fitBounds(tracks.getBounds());
+
+    marker = L.marker([current_photo.lat,current_photo.long]).addTo(map);
+    viewer = L.multiPolygon([JSON.parse(current_photo.viewer_coords)]).addTo(map);
+
   }
 
   function advance () {

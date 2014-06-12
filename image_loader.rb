@@ -64,7 +64,7 @@ module Geo
     output
   end
 
-  def self.geom_to_geoJSON(query_result)
+  def self.to_geoJSON(query_result)
     #note - must transform geometry with ST_AsGeoJSON(geom) AS geometry
     @geoms = []
 
@@ -90,9 +90,9 @@ end
 
 class Photo
 
-  attr_accessor :lat, :long, :alt, :att, :build_viewer, :db, :track_id, :file_path, :file_name, :viewer_coords
+  attr_accessor :lat, :long, :alt, :att, :build_viewer, :db, :track_id, :file_path, :file_name, :viewer_coords, :degree
 
-  def initialize(db = nil, lat = nil, long = nil, alt = nil, file_name = nil, attributes = nil )
+  def initialize(db = nil, lat = nil, long = nil, alt = 0, file_name = nil, attributes = nil )
     @lat = lat
     @long = long
     @alt = alt
@@ -104,7 +104,7 @@ class Photo
 
   def build_viewer
     photo_albers = Geo.transform_pt(db, lat, long, 4326, 102243)
-    viewer_albers = get_viewer_coords(photo_albers[0].to_f,photo_albers[1].to_f, 200, 45, 20, 1)
+    viewer_albers = calc_viewer_coords(photo_albers[0].to_f,photo_albers[1].to_f, 200, 20, 1)
     viewer_wgs = db.exec("SELECT ST_AsText(ST_Transform(ST_GeomFromText('POLYGON((#{viewer_albers}))', 102243),4326))").to_a
 
     geom = viewer_wgs.first["st_astext"]
@@ -118,7 +118,7 @@ class Photo
     output_reverse
   end
 
-  def get_viewer_coords(long_albers, lat_albers, width, degree, degree_buffer, degree_increment )
+  def calc_viewer_coords(long_albers, lat_albers, width, degree_buffer, degree_increment )
 
     degree_span_start = degree - degree_buffer
     degree_span_end = degree + degree_buffer
@@ -129,8 +129,8 @@ class Photo
     while current_degree != degree_span_end
       radian = current_degree * ( Math::PI / 180 )
 
-      x = width *  Math.cos(radian).round(10)
-      y = width * Math.sin(radian).round(10)
+      x = width *  Math.sin(radian).round(2)
+      y = width * Math.cos(radian).round(2)
 
       x+= lat_albers
       y+= long_albers
@@ -140,6 +140,10 @@ class Photo
     end
     output += ",#{long_albers} #{lat_albers}"
     output
+  end
+
+  def degree
+    att[:gps_img_direction].to_f
   end
 
   def write_to_db
@@ -179,6 +183,7 @@ class Photo
     output["file_path"] = attributes["file_path"]
     output["file_name"] = attributes["file_name"]
     output["viewer_coords"] = attributes["viewer_coords"]
+    output["direction"] = attributes["gps_img_direction"]
 
     output
   end
@@ -191,7 +196,7 @@ class Track
 
 
   def initialize(connection, track_id, photos = nil, attributes = nil)
-    @connection = PG.connect(dbname: 'trailview')
+    @connection = connection
     @track_id = track_id
     @photos = photos
     @projection = 4326
@@ -199,16 +204,21 @@ class Track
   end
 
   def wgs_coords
-    @wgs_coords = @connection.exec("SELECT ST_AsText(geom),id FROM photos WHERE track_id = #{track_id} ORDER BY date_time_digitized").to_a
+    @wgs_coords = @connection.exec("SELECT ST_AsText(geom),id FROM photos WHERE track_id = #{track_id}").to_a
   end
 
   def albers_coords
-    @albers_coords = @connection.exec("SELECT ST_AsText(ST_Transform(geom,102243)) as st_astext, id FROM photos WHERE track_id = #{track_id} ORDER BY date_time_digitized").to_a
+    @albers_coords = @connection.exec("SELECT ST_AsText(ST_Transform(geom,102243)) as st_astext, id FROM photos WHERE track_id = #{track_id}").to_a
   end
 
-  def build_line_wgs
+  def update_geom
     c = Geo.txt_from_astext(wgs_coords, true)
     connection.exec("UPDATE tracks SET geom = ST_GeomFromText('LINESTRING(#{c})',4326) WHERE id = #{track_id};")
+  end
+
+  def generate_geoJSON
+    r = connection.exec_params("SELECT ST_AsGeoJSON(geom) AS geometry, id FROM tracks WHERE id = $1;", track_id).to_a
+    Geo.to_geoJSON(r)
   end
 
   def self.build_from_photo_set(directory, track_id, db)
@@ -240,20 +250,32 @@ class Track
       end
     end
 
-    return Track.new(db, track_id, all_photos)
+    result = Track.new(db, track_id, all_photos)
+    result.update_geom
+    result
+
   end
 
-  def self.load_from_db(db, track_id)
-    tracks = db.exec_params('SELECT id, ST_AsGeoJSON(geom) as geometry, user_id, name, description, import_date from tracks WHERE id = $1', track_id).to_a
+  def self.create(db, user_id, name, description)
+    query = "INSERT INTO tracks (user_id, name, description) values ($1,$2,$3);"
+    result = db.exec_params(query,[user_id, name, description])
+  end
+
+  def self.load_single(db, track_id)
+    attributes = db.exec_params('SELECT id, ST_AsGeoJSON(geom) as geometry, user_id, name, description, import_date from tracks WHERE id = $1', track_id).to_a[0]
     photos = db.exec_params('SELECT id FROM photos WHERE track_id = $1', track_id).to_a
     photo_set = []
     photos.each do |photo|
       photo_set << Photo.load_from_db(db, photo["id"].to_i)
     end
 
-    track = Track.new(db, track_id, photo_set, tracks)
-
+    track = Track.new(db, track_id, photo_set, attributes)
 
   end
 
+  def self.load_all_by_user(db, user_id)
+    tracks = db.exec_params('SELECT id, ST_AsGeoJSON(geom) as geometry, user_id, name, description, import_date from tracks WHERE user_id = $1', [user_id.to_i]).to_a
+  end
+
 end
+
