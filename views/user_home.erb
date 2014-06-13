@@ -1,18 +1,30 @@
-My Tracks
+<script src='/javascripts/user_page.js'></script>
 
+<div id = "user_background_map">
+</div>
+
+<div id = "user_tracks_container">
+<div class = "user_tracks_title">My Tracks</div>
+<div id = "user_tracks">
 <ul>
 <% @tracks.each do |track|%>
 
 <li>
+  <div class = "user_track">
   <a href = "tracks/<%= track["id"] %>"><%= track["name"]%></a>
+  </div>
 </li>
 
 <% end %>
+</ul>
+</div>
+</div>
 
-<form action = "/create_track" method="post" >
+<form action = "/create_track" method="post" id = "create_user_tracks" >
+  <div class = "user_tracks_title">Add Track</div>
   <div class = "login_credential">
     <label for="name" >Name</label></div>
-  <input type="text" name = "name" size="30"/><br>
+    <input type="text" name = "name" size="30"/><br>
 
    <div class = "login_credential">
     <label for="description" >Description&nbsp;&nbsp;</label></div>
@@ -23,4 +35,3 @@ My Tracks
 </form>
 
 
-</ul>

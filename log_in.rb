@@ -1,6 +1,27 @@
 require 'securerandom'
 require 'digest'
 
+
+def form_incomplete?
+  [:username, :password, :email].each do |p|
+    if params[p] == ""
+      return true
+    end
+  end
+  false
+end
+
+def username_taken?
+  query = "SELECT * FROM users WHERE username = $1"
+  result = PG.connect(dbname: 'trailview').exec_params(query, [params[:username]]).to_a
+  if result.empty?
+    return false
+  else
+    return true
+  end
+end
+
+
 def valid_user?(username, password)
   query = "SELECT * FROM users WHERE username = $1"
   result = PG.connect(dbname: 'trailview').exec_params(query, [username]).to_a
@@ -40,11 +61,20 @@ def current_user
 end
 
 
-def authenticate
+def logged_in?
   if session[:user_id].nil?
+    false
+  else
+    true
+  end
+end
+
+def authenticate
+  if !logged_in?
     redirect "/"
   end
 end
+
 
 def matches_owner?(owner_id)
   session[:user_id] != owner_id ? false : true

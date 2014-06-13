@@ -12,7 +12,15 @@ db = PG.connect(dbname: 'trailview')
 
 
 get "/" do
+  session[:user_id] = nil
+  if logged_in? then redirect "/home" end
 
+  @logInState = 0
+  erb :home
+end
+
+get "/create_user" do
+  @logInState = 1
   erb :home
 end
 
@@ -22,14 +30,23 @@ post "/log_in" do
     set_user(user_id)
     redirect "/home"
   else
+    flash[:notice] = "Invalid username or password"
     redirect "/"
   end
 end
 
 post "/create_user" do
-  create_user
-  session[:user_id] = get_user_id(params[:username])
-  redirect "/home"
+  if form_incomplete?
+    flash[:notice] = "Please fill out all inputs"
+    redirect "/create_user"
+  elsif username_taken?
+    flash[:notice] = "Please choose a different username"
+    redirect "/create_user"
+  else
+    create_user
+    session[:user_id] = get_user_id(params[:username])
+    redirect "/home"
+  end
 end
 
 post "/create_track" do

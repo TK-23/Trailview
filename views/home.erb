@@ -1,42 +1,37 @@
 <body>
 
+<script src='/javascripts/main_page.js'></script>
 <div id = "background_map">
-  <div id = "sign_in">
-    <form action = "/log_in" method="post" >
-        <div class = "login_credential">
-          <label for="username" >User Name</label></div>
-        <input type="text" name = "username" size="30"/><br>
 
-         <div class = "login_credential">
-          <label for="password" >Password&nbsp;&nbsp;</label></div>
-          <input type="password" name ="password" size="30"/>
-        <input type = "submit" name = "submit" style="visibility:hidden" />
+<%= if !flash[:notice].nil? then "<div id = \"notice\">#{flash[:notice]}</div>" end %>
+  <div id = "login_container">
+
+    <form method="post" id = "login_credentials" action = "<%= @logInState == 0 ? "/log_in" : "/create_user" %>">
+
+      <label for="username" >User Name</label>
+      <input type="text" name = "username" size="30"/><br>
+
+      <label for="password" >Password</label>
+      <input type="password" name ="password" size="30"/><br>
+
+      <% if @logInState == 1 %>
+
+      <label for="email" >Email</label>
+      <input type="email" name = "email" size="30"/><br>
+
+      <% end %>
+
+      <input type = "submit" name = "submit" value = "<%= @logInState == 0 ? "Log In" : "Create" %>" id= "hidden" />
+
+      <span id = "new_account">
+        <a href = "<%= @logInState == 0 ? "/create_user" : "/" %>"><%= @logInState == 0 ? "Create User" : "Log In" %></a>
+      </span>
+
+      </span>
 
     </form>
   </div>
 </div>
-<script>
-var map = L.mapbox.map('background_map', 'examples.map-i86nkdio')
-    .setView([42.25, -72], 9);
-</script>
 
-<form action = "/create_user" method="post" >
-        <div class = "login_credential">
-          <label for="username" >User Name</label></div>
-        <input type="text" name = "username" size="30"/><br>
-
-         <div class = "login_credential">
-          <label for="password" >Password&nbsp;&nbsp;</label></div>
-          <input type="password" name ="password" size="30"/>
-
-          <div class = "login_credential">
-            <label for="email" >Email&nbsp;&nbsp;</label></div>
-            <input type="email" name ="email" size="30"/>
-        <input type = "submit" name = "submit" style="visibility:hidden" />
-
-    </form>
-
-
-<div id = "recent_tracks"></div>
 </body>
 
