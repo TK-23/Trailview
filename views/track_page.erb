@@ -63,7 +63,6 @@
 
 
   function update_page() {
-    info.innerHTML = parseInt(current_photo.direction.split("/")[0])/parseInt(current_photo.direction.split("/")[1]);
     current_photo = JSON.parse(all_photos[position]);
     image.src = "/UserPhotos/<%= session[:user_id]%>/<%= @track.track_id%>/" + current_photo.file_name;
     marker.setLatLng(L.latLng(
