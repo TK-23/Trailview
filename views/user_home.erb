@@ -1,4 +1,30 @@
-<script src='/javascripts/user_page.js'></script>
+<script>
+   window.onload = function() { initialize();};
+
+  function initialize() {
+
+    all_tracks = <%= @tracks_geoJSON %>;
+
+    map = document.getElementById("user_background_map");
+    map.style.height = (window.innerHeight - 70 ) +"px";
+
+    initialize_home_map();
+
+  }
+
+  function initialize_home_map() {
+    var map = L.mapbox.map('user_background_map', 'examples.map-i86nkdio')
+    map.setView([42.25, -72], 9)
+
+    var tracks = L.mapbox.featureLayer(all_tracks);
+    tracks.addTo(map);
+
+    map.fitBounds(tracks.getBounds());
+
+    map.setView(map.getCenter(), map.getZoom() - 4);
+  }
+
+</script>
 
 <div id = "user_background_map">
 </div>
@@ -8,10 +34,9 @@
 <div id = "user_tracks">
 <ul>
 <% @tracks.each do |track|%>
-
 <li>
   <div class = "user_track">
-  <a href = "tracks/<%= track["id"] %>"><%= track["name"]%></a>
+  <a href = "tracks/<%= track.track_id %>"><%= track.attributes["name"]%></a>
   </div>
 </li>
 
@@ -20,17 +45,19 @@
 </div>
 </div>
 
-<form action = "/create_track" method="post" id = "create_user_tracks" >
+<form action = "/create_track" method="post" enctype = "multipart/form-data" id = "create_user_tracks" >
   <div class = "user_tracks_title">Add Track</div>
-  <div class = "login_credential">
-    <label for="name" >Name</label></div>
+
+    <label for="name" >Name</label>
     <input type="text" name = "name" size="30"/><br>
 
-   <div class = "login_credential">
-    <label for="description" >Description&nbsp;&nbsp;</label></div>
-    <input type="text" name ="description" size="30"/>
+    <label for="description" >Description&nbsp;&nbsp;</label>
+    <input type="text" name ="description" size="30"/><br>
 
-  <input type = "submit" name = "submit" style="visibility:hidden" />
+    <label for="name" >Photos</label></div>
+    <input type="file" name = "images[]" multiple/><br>
+
+  <input type = "submit" name = "submit" />
 
 </form>
 

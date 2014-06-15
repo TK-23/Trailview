@@ -1,6 +1,4 @@
 <body>
-
-<div id = "my_map"></div>
 <script>
 
   window.onload = function() { prepareEventHandlers();};
@@ -17,7 +15,7 @@
     next = document.getElementById("next");
     image = document.getElementById("my_photo");
 
-    image.src = "/images2/" + current_photo.file_name;
+    image.src = "/UserPhotos/<%= session[:user_id]%>/<%= @track.track_id%>/" + current_photo.file_name;
     initialize_user_map();
 
     next.addEventListener('click', advance);
@@ -28,11 +26,25 @@
   function initialize_user_map () {
 
     map = L.mapbox.map('my_map', 'examples.map-i86nkdio');
+    map.doubleClickZoom.disable();
 
-   // var tracks = L.mapbox.featureLayer(<%= @track_geoJSON%>);
+    var tracks = L.mapbox.featureLayer(<%= @track_geoJSON%>);
 
-   // tracks.addTo(map);
-  //  map.fitBounds(tracks.getBounds());
+    tracks.addTo(map);
+    map.fitBounds(tracks.getBounds());
+
+    zoom = map.getZoom() -1
+
+    SWlat = map.getBounds().getSouthWest().lat;
+    SWlong = map.getBounds().getSouthWest().lng;
+
+    NElat = map.getBounds().getNorthEast().lat;
+    NElong = map.getBounds().getNorthEast().lng;
+
+    map_center_lat =  SWlat + (Math.abs( SWlat - NElat ) / 2);
+    map_center_long = NElong - (Math.abs( SWlong - NElong ) / 4 );
+
+    map.setView([map_center_lat, map_center_long], zoom);
 
     marker = L.marker([current_photo.lat,current_photo.long]).addTo(map);
     viewer = L.multiPolygon([JSON.parse(current_photo.viewer_coords)]).addTo(map);
@@ -51,8 +63,9 @@
 
 
   function update_page() {
+    info.innerHTML = parseInt(current_photo.direction.split("/")[0])/parseInt(current_photo.direction.split("/")[1]);
     current_photo = JSON.parse(all_photos[position]);
-    image.src = "/images2/" + current_photo.file_name;
+    image.src = "/UserPhotos/<%= session[:user_id]%>/<%= @track.track_id%>/" + current_photo.file_name;
     marker.setLatLng(L.latLng(
        [current_photo.lat,
        current_photo.long]
@@ -63,17 +76,17 @@
 
 </script>
 
-<div id = "my_photo_container"><br>
-<div id = "back" class = "nav_button"></div>
+
+<div id = "my_map">
+
+<div id = "my_photo_container">
+<div id = "back" class = "nav_button"><div>B<br>A<br>C<br>K</div></div>
 <img id = "my_photo" src = ""/>
-<div id = "next" class = "nav_button"></div>
+<div id = "next" class = "nav_button"><div>N<br>E<br>X<br>T</div></div>
 </div>
 
-<div id = "my_tracks">
 
-  <span id = "my_tracks_title"><b>Notes</b></span>
-
-  <div class = "track"> <%= %></div>
+<span id = "track_info"><%= "#{@track.attributes["name"]} - #{@track.attributes["description"]}" %></span>
 
 </div>
 

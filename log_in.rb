@@ -45,6 +45,11 @@ def create_user
 
   query = "INSERT INTO users (username, password, email, salt) values ($1,$2,$3,$4);"
   result = PG.connect(dbname: 'trailview').exec_params(query,[params[:username], password, params[:email],salt])
+
+  id = get_user_id(params[:username])
+
+  Dir.mkdir("public/UserPhotos/#{id}")
+
 end
 
 def get_user_id(username)

@@ -3,7 +3,7 @@
   function initialize() {
 
     map = document.getElementById("background_map");
-    map.style.height = (window.innerHeight - 20 ) +"px";
+    map.style.height = (window.innerHeight - 70 ) +"px";
 
     initialize_home_map();
 

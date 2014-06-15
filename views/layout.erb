@@ -2,13 +2,22 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title >Timeline</title>
+    <title >Trailview</title>
     <link rel="stylesheet" href="/stylesheets/styles.css">
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
     <script src='https://api.tiles.mapbox.com/mapbox.js/v1.6.3/mapbox.js'></script>
     <link href='https://api.tiles.mapbox.com/mapbox.js/v1.6.3/mapbox.css' rel='stylesheet' />
 
   </head>
+  <div id = "top_bar">
+    <a href ="/home"><img id = "logo" src="/logo.png"></a>
+    <% if logged_in? %>
+          <ul id = "logout">
+           <li><a href ="/home">Home</a></li>
+           <li><a href ="/?signout=y">Sign Out</a></li>
+          </ul>
+    <% end %>
+  </div>
 
   <%= yield %>
 
