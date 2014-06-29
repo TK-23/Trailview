@@ -1,7 +1,7 @@
 require 'sinatra'
 require 'pg'
 require 'json'
-require 'pry'
+
 require 'sinatra/flash'
 
 require_relative 'config/application'

@@ -1,6 +1,5 @@
 require 'exifr'
 require 'pg'
-require 'pry'
 
 module Geo
 
